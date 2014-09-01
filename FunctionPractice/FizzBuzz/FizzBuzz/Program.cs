@@ -22,7 +22,7 @@ namespace FizzBuzz
             TrueYodaizer("I like code");
             TextStats("Three sentences is what you ask for? Three sentences is what you get. ARE YOU NOT SATISFIED?");
             IsPrime(7);
-            DashInsert(8675309);
+            TrueDashInsert(8675309);
             Console.ReadKey();
         }
 
@@ -124,41 +124,31 @@ namespace FizzBuzz
             }
             
         }
-        static void DashInsert(int number)
+        static void TrueDashInsert(int number)
         {
-            string oddNumbers = "13579";
-            bool num1 = false;
-            bool num2 = false;
-            for (int i = 0; i < number.ToString().Length; i++)
-            {
-                if (num1 == true)
-                {
-                    break;
-                }
-                else if (num1 == false)
-                    if (oddNumbers.Contains(number.ToString()))
-                    {
-                        num1 = true;
-                        break;
-                            
-                    }
-                if (num2 == true)
-                {
-                    break;
-                }
-                else if (num2 == false)
-                    if (oddNumbers.Contains(number.ToString()))
-                    {
-                        num2 = true;
-                        break;
-                    }
+            string stringThing = number.ToString();
+            string tempString = string.Empty;
 
-                
-            }
-            if (num1 == num2)
+            if (stringThing.Length <= 1)
             {
-                Console.WriteLine(num1 + "-" + num2);
+                Console.WriteLine("Please give a number over 2 characters long");
             }
+            foreach (char i in stringThing)
+            {
+                if (tempString.Length == 0)
+                {
+                    tempString = tempString + i;
+                }
+                else if (Convert.ToInt32(i) > 0 && Convert.ToInt32(i) % 2 != 0 && Convert.ToInt32(tempString[tempString.Length - 1]) % 2 != 0)
+                {
+                    tempString = tempString + "-" + i;
+                }
+                else
+                {
+                    tempString = tempString + i;
+                }
+            }
+            Console.WriteLine(tempString);
         }
     }
 }
